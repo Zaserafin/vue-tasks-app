@@ -1,5 +1,6 @@
 <script setup>
 import Panel from "@/components/Panel.vue";
+import TaskForm from "@/components/TaskForm.vue";
 </script>
 
 <template>
@@ -7,12 +8,7 @@ import Panel from "@/components/Panel.vue";
     <Panel>
       <template #title>Lista de tareas</template>
 
-      <form action="">
-        <div class="text-white flex">
-          <input type="text" placeholder="Añadir una tarea" class="outline-0 border-none bg-slate-600 text-white p-2 rounded-s-md w-full">
-          <button type="submit" class=" bg-slate-600 rounded-e-md p-2 border-l border-slate-700 hover:bg-slate-500 transition-colors">Añadir</button>
-        </div>
-      </form>
+      <TaskForm/>
 
       <ul class="overflow-y-scroll h-[calc(100%_-_120px)] divide-y divide-slate-600 mt-6">
         <li class="flex justify-between items-center"><label class="p-2 w-full truncate flex items-center md:max-w-xl"><input class="me-1 cursor-pointer" type="checkbox"/>Label o Titulo de la tarea</label> <div class="hidden md:inline-block"><button class="bg-red-500 mx-1 w-8 h-8 hover:bg-red-400 transition-colors rounded-md">X</button><button class="bg-green-500 mx-1 w-8 h-8 hover:bg-green-400 transition-colors rounded-md">Z</button></div></li>
