@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import Button from "./Button.vue";
 let emit = defineEmits(["delete", "update"]);
 let showInput = ref(false);
 
@@ -32,10 +33,8 @@ function handleDelete() {
             {{ task.name }}
         </label>
         <div class="hidden ps-4 flex-shrink-0 md:inline-block">
-            <button v-if="!showInput" @click="handleDelete"
-                class="bg-red-500 mx-1 w-8 h-8 hover:bg-red-400 transition-colors rounded-md">X</button>
-            <button class="bg-green-500 mx-1 w-8 h-8 hover:bg-green-400 transition-colors rounded-md"
-                @click="handleUpdateClick">Z</button>
+            <Button color="red" v-if="!showInput" @click="handleDelete">X</Button>
+            <Button color="green" @click="handleUpdateClick">Z</Button>
         </div>
     </li>
 </template>
