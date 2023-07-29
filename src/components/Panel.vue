@@ -3,9 +3,9 @@
 
 <template>
     <div class="h-full p-4 rounded-md bg-slate-700 border-slate-600 text-white">
-        <h2 v-if="$slots.title" class="text-3xl text-center font-bold mb-6 mt-2">
-            <slot name="title" />
-        </h2>
+        <div v-if="$slots.heading" class="flex flex-col items-start justify-between mb-2 md:flex-row md:items-center">
+            <slot name="heading" />
+        </div>
 
         <slot />
     </div>

@@ -26,7 +26,7 @@ function handleDelete() {
 
 <template>
     <li class="flex justify-between items-center h-11">
-        <input v-if="showInput" class="outline-0 border-none bg-slate-600 text-white p-2 rounded-md w-full"
+        <input v-if="showInput" class="outline-0 border-none bg-slate-600 text-white p-2 rounded-md w-full me-2"
             placeholder="Editar categoría" v-model="task.name" />
         <label v-if="!showInput" class="w-full flex items-center cursor-pointer">
             <input type="checkbox" class="me-1 cursor-pointer w-4 h-4" v-model="task.complete" />
@@ -34,7 +34,7 @@ function handleDelete() {
                 {{ task.name }}
             </div>
         </label>
-        <div class="flex-shrink-0">
+        <div class=" flex gap-1 flex-shrink-0">
             <Button v-if="!showInput" color="red" @click="handleDelete">
                 <i class="bi bi-x-lg"></i>
             </Button>
