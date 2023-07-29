@@ -35,8 +35,13 @@ function handleDelete() {
             </div>
         </label>
         <div class="flex-shrink-0">
-            <Button color="red" v-if="!showInput" @click="handleDelete">X</Button>
-            <Button color="green" @click="handleUpdateClick">Z</Button>
+            <Button v-if="!showInput" color="red" @click="handleDelete">
+                <i class="bi bi-x-lg"></i>
+            </Button>
+            <Button color="green" @click="handleUpdateClick">
+                <i v-if="!showInput" class="bi bi-pencil-fill"></i>
+                <i v-if="showInput" class="bi bi-check-lg"></i>
+            </Button>
         </div>
     </li>
 </template>
