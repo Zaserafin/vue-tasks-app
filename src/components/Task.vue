@@ -25,14 +25,16 @@ function handleDelete() {
 </script>
 
 <template>
-    <li class="flex justify-between items-center py-1">
+    <li class="flex justify-between items-center h-11">
         <input v-if="showInput" class="outline-0 border-none bg-slate-600 text-white p-2 rounded-md w-full"
             placeholder="Editar categoría" v-model="task.name" />
-        <label v-if="!showInput" class="p-2 w-full truncate flex items-center md:max-w-xl">
-            <input type="checkbox" class="me-1 cursor-pointer" v-model="task.complete" />
-            {{ task.name }}
+        <label v-if="!showInput" class="w-full flex items-center cursor-pointer">
+            <input type="checkbox" class="me-1 cursor-pointer w-4 h-4" v-model="task.complete" />
+            <div class="truncate">
+                {{ task.name }}
+            </div>
         </label>
-        <div class="hidden ps-4 flex-shrink-0 md:inline-block">
+        <div class="flex-shrink-0">
             <Button color="red" v-if="!showInput" @click="handleDelete">X</Button>
             <Button color="green" @click="handleUpdateClick">Z</Button>
         </div>
