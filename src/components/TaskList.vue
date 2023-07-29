@@ -1,6 +1,6 @@
 <script setup>
 import Task from "@/components/Task.vue";
-import Badge from "./Badge.vue";
+import Badge from "@/components/Badge.vue";
 
 defineProps({
     tasks: Array
