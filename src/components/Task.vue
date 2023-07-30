@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import Button from "./Button.vue";
+import Button from "@/components/Button.vue";
 let emit = defineEmits(["delete", "update"]);
 let showInput = ref(false);
 

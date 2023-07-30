@@ -81,8 +81,10 @@ function handleDeleteTask(id) {
       <TaskForm @submit="handleAddTask" />
 
       <div class="flex flex-wrap gap-1 mt-4">
-        <Badge v-for="filter in filters" :class="{ 'text-indigo-500 border-indigo-500': filter.id === currentFilter }"
-          :key="filter.id" @click="currentFilter = filter.id">{{ filter.label }}</Badge>
+        <Badge v-for="filter in filters" :active="filter.id === currentFilter" :key="filter.id"
+          @click="currentFilter = filter.id">
+          {{ filter.label }}
+        </Badge>
       </div>
 
       <TaskList :tasks="filteredTask" @delete="handleDeleteTask" />
