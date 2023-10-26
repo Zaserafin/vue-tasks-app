@@ -4,43 +4,15 @@ import Panel from "@/components/Panel.vue";
 import TaskForm from "@/components/TaskForm.vue";
 import TaskList from "@/components/TaskList.vue";
 import Badge from "@/components/Badge.vue";
+import settings from "@/data/settings";
 
-const filters = [
-  {
-    id: "all",
-    label: "Todas",
-    key: "complete",
-    value: null,
-    default: true
-  },
-  {
-    id: "completed",
-    label: "Completadas",
-    key: "complete",
-    value: true,
-    default: false
-  },
-  {
-    id: "inProgress",
-    label: "En progreso",
-    key: "complete",
-    value: false,
-    default: false
-  },
-];
-
-const tasks = ref([
-  { id: 0, name: "Testing Task 1 Application", complete: false },
-  { id: 1, name: "Testing Task 2 Application", complete: false },
-]);
-
+const tasks = ref([]);
 const currentFilter = ref("all");
 
 const completedTasks = computed(() => tasks.value.filter(task => task.complete));
-const inProgressTasks = computed(() => tasks.value.filter(task => !task.complete));
 
 const filteredTask = computed(() => {
-  const filter = filters.find(f => f.id === currentFilter.value);
+  const filter = settings.filters.find(f => f.id === currentFilter.value);
   if (filter.id === "all") return tasks.value;
   return tasks.value.filter(task => {
     return task[filter.key] === filter.value;
@@ -63,6 +35,9 @@ function handleDeleteTask(id) {
   tasks.value.splice(index, 1);
 }
 
+function changeFilter(filter) {
+  currentFilter.value = filter.id
+}
 
 </script>
 
@@ -81,8 +56,8 @@ function handleDeleteTask(id) {
       <TaskForm @submit="handleAddTask" />
 
       <div class="flex flex-wrap gap-1 mt-4">
-        <Badge v-for="filter in filters" :active="filter.id === currentFilter" :key="filter.id"
-          @click="currentFilter = filter.id">
+        <Badge v-for="filter in settings.filters" :active="filter.id == currentFilter" :key="filter.id"
+          @click="changeFilter(filter)">
           {{ filter.label }}
         </Badge>
       </div>

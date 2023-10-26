@@ -6,7 +6,7 @@ let newTask = ref('');
 const emit = defineEmits(["submit"])
 
 function submit() {
-    if (newTask === null || newTask.value === '') return;
+    if (newTask.value === null || newTask.value === '') return;
     emit('submit', newTask.value);
     newTask.value = '';
 }
