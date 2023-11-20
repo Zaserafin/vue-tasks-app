@@ -3,10 +3,15 @@ import { generateGuid } from "@/utils";
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
 
-const STORAGE_KEY = "@theme";
+const STORAGE_KEY = "@tasks";
 
 export function setupTaskStore() {
-
+    const storage = localStorage.getItem(STORAGE_KEY);
+    if (storage) {
+        const data = JSON.parse(storage);
+        const taskStore = useTaskStore();
+        taskStore.setupTasks(data);
+    }
 }
 
 export const useTaskStore = defineStore('task', () => {
@@ -34,26 +39,31 @@ export const useTaskStore = defineStore('task', () => {
             completed: false
         };
         tasks.value.push(task);
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks.value));
     }
 
     function updateTask(updatedTask) {
         const index = findTaskIndex(updatedTask.id);
         if (index !== -1) {
             tasks.value[index] = updatedTask;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks.value));
         }
     }
 
     function removeTask(id) {
-        const index = tasks.value.findIndex((t) => {
-            return t.id === id;
-        })
-        tasks.value.splice(index, 1);
+        const index = findTaskIndex(id);
+        if (index !== -1) {
+            tasks.value.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks.value));
+        }
     }
 
     function completeTask(id) {
         const index = findTaskIndex(id);
         if (index !== -1) {
             tasks.value[index].completed = !tasks.value[index].completed;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks.value));
         }
     }
 
@@ -61,5 +71,9 @@ export const useTaskStore = defineStore('task', () => {
         taskFilter.value = filter.id
     }
 
-    return { tasks, taskFilter, filteredTask, completedTasks, addTask, updateTask, removeTask, completeTask, changeFilter }
+    function setupTasks(list) {
+        tasks.value = list;
+    }
+
+    return { tasks, taskFilter, filteredTask, completedTasks, setupTasks, addTask, updateTask, removeTask, completeTask, changeFilter }
 })
