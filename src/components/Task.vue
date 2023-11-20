@@ -20,7 +20,7 @@ function handleDelete() {
 
 <template>
     <li class="flex justify-between items-center h-11">
-        <input v-if="showInput" class="outline-0 border-none bg-slate-600 text-white p-2 rounded-md w-full me-2"
+        <input v-if="showInput" class="outline-0 border-none bg-[var(--subtle-color)] p-2 rounded-md w-full me-2"
             placeholder="Editar categoría" v-model="task.name" ref="inputRef" />
         <label v-if="!showInput" class="w-full flex items-center cursor-pointer">
             <input type="checkbox" class="me-1 cursor-pointer w-4 h-4" v-model="task.complete" />

@@ -15,11 +15,11 @@ function submit() {
 
 <template>
     <form action="#" @submit.prevent="submit">
-        <div class="text-white flex">
+        <div class="flex">
             <input type="text" v-model="newTask" placeholder="Añadir una tarea"
-                class="outline-0 border-none bg-slate-600 text-white p-2 rounded-s-md w-full">
+                class="outline-0 border-none bg-[var(--subtle-color)] p-2 rounded-s-md w-full">
             <button type="submit"
-                class=" bg-slate-600 rounded-e-md p-2 border-l border-slate-700 hover:bg-slate-500 transition-colors">
+                class=" bg-[var(--subtle-color)] rounded-e-md p-2 border-l border-[var(--bg-color)] hover:bg-[var(--outline-color)]">
                 Añadir
             </button>
         </div>
