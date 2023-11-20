@@ -1,16 +1,16 @@
 <script setup>
 import { ref } from "vue";
+import { useTaskStore } from "@/stores/task";
+
+const taskStore = useTaskStore();
 
 let newTask = ref('');
 
-const emit = defineEmits(["submit"])
-
 function submit() {
     if (newTask.value === null || newTask.value === '') return;
-    emit('submit', newTask.value);
+    taskStore.addTask(newTask.value);
     newTask.value = '';
-}
-
+} 
 </script>
 
 <template>

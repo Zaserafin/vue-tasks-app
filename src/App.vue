@@ -1,44 +1,13 @@
 <script setup>
-import { ref, computed } from "vue";
 import Panel from "@/components/Panel.vue";
 import TaskForm from "@/components/TaskForm.vue";
 import TaskList from "@/components/TaskList.vue";
 import Badge from "@/components/Badge.vue";
 import ThemeToggle from "@/components/ThemeToggle.vue";
-import settings from "@/data/settings";
+import { useTaskStore } from "@/stores/task";
+import { filters } from "@/data/params";
 
-const tasks = ref([]);
-const currentFilter = ref("all");
-
-const completedTasks = computed(() => tasks.value.filter(task => task.complete));
-
-const filteredTask = computed(() => {
-  const filter = settings.filters.find(f => f.id === currentFilter.value);
-  if (filter.id === "all") return tasks.value;
-  return tasks.value.filter(task => {
-    return task[filter.key] === filter.value;
-  });
-})
-
-function handleAddTask(newTask) {
-  const task = {
-    id: tasks.value.length + 1,
-    name: newTask,
-    complete: false
-  };
-  tasks.value.push(task);
-}
-
-function handleDeleteTask(id) {
-  const index = tasks.value.findIndex((t) => {
-    return t.id === id;
-  })
-  tasks.value.splice(index, 1);
-}
-
-function changeFilter(filter) {
-  currentFilter.value = filter.id
-}
+const taskStore = useTaskStore()
 
 </script>
 
@@ -53,22 +22,22 @@ function changeFilter(filter) {
             </h2>
 
             <div class="flex flex-col">
-              <span class=" text-sm">{{ completedTasks.length }}/{{ tasks.length }} completadas</span>
+              <span class=" text-sm">{{ taskStore.completedTasks.length }}/{{ taskStore.tasks.length }} completadas</span>
             </div>
           </div>
 
           <ThemeToggle />
         </template>
-        <TaskForm @submit="handleAddTask" />
+        <TaskForm />
 
         <div class="flex flex-wrap gap-1 mt-4">
-          <Badge v-for="filter in settings.filters" :active="filter.id == currentFilter" :key="filter.id"
-            @click="changeFilter(filter)">
+          <Badge v-for="filter in filters" :active="filter.id == taskStore.taskFilter" :key="filter.id"
+            @click="taskStore.changeFilter(filter)">
             {{ filter.label }}
           </Badge>
         </div>
 
-        <TaskList :tasks="filteredTask" @delete="handleDeleteTask" />
+        <TaskList />
       </Panel>
     </div>
   </main>
