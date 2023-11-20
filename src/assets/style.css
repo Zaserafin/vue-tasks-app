@@ -1,3 +1,5 @@
+@import './_theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,12 @@ html,
 body,
 #app {
   height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  color: var(--text-color);
 }
 
 /* width */

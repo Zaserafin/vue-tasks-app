@@ -1,14 +1,19 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import '@/assets/style.css';
 
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import './assets/style.css'
+import { setupThemeStore } from '@/stores/theme';
+import { setupTaskStore } from '@/stores/task';
 
-const app = createApp(App)
+import App from '@/App.vue';
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
+const pinia = createPinia();
 
-app.mount('#app')
+app.use(pinia);
+
+setupThemeStore();
+setupTaskStore();
+
+app.mount('#app');
