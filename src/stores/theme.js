@@ -23,8 +23,7 @@ export const useThemeStore = defineStore('theme', () => {
     function changeTheme(newTheme) {
         if (!ALLOWED_THEMES.includes(newTheme)) return;
         theme.value = newTheme;
-        localStorage.setItem(STORAGE_KEY, newTheme)
-        console.log(document.documentElement);
+        localStorage.setItem(STORAGE_KEY, newTheme);
         document.documentElement.dataset.theme = newTheme;
     }
 
