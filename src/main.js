@@ -3,7 +3,7 @@ import '@/assets/style.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
-import { setupThemeStore } from "@/stores/theme";
+import { setupThemeStore } from '@/stores/theme';
 import { setupTaskStore } from '@/stores/task';
 
 import App from '@/App.vue';

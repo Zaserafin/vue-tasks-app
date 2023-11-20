@@ -1,1 +1,1 @@
-export { default as filters } from "./filters.param";
+export { default as filters } from './filters.param';

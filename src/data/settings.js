@@ -1,6 +1,4 @@
-const settings = {
-
-}
+const settings = {};
 
 Object.freeze(settings);
 
