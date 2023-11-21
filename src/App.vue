@@ -12,19 +12,17 @@ const taskStore = useTaskStore();
 
 <template>
   <main class="h-full bg-[var(--bg-color)]">
-    <div class="h-full p-2 max-w-3xl mx-auto gap-10 md:py-6 md:px-0">
+    <div class="h-full max-w-3xl mx-auto gap-10 md:py-6 px-0">
       <Panel>
         <template #heading>
           <div>
             <h2 class="text-2xl text-left font-bold my-2">Listado de tareas</h2>
 
             <div class="flex flex-col">
-              <span class="text-sm"
-                >{{ taskStore.completedTasks.length }}/{{
-                  taskStore.tasks.length
-                }}
-                completadas</span
-              >
+              <span class="text-sm">{{ taskStore.completedTasks.length }}/{{
+                taskStore.tasks.length
+              }}
+                completadas</span>
             </div>
           </div>
 
@@ -33,12 +31,8 @@ const taskStore = useTaskStore();
         <TaskForm />
 
         <div class="flex flex-wrap gap-1 mt-4">
-          <Badge
-            v-for="filter in filters"
-            :active="filter.id == taskStore.taskFilter"
-            :key="filter.id"
-            @click="taskStore.changeFilter(filter)"
-          >
+          <Badge v-for="filter in filters" :active="filter.id == taskStore.taskFilter" :key="filter.id"
+            @click="taskStore.changeFilter(filter)">
             {{ filter.label }}
           </Badge>
         </div>
