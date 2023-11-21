@@ -15,4 +15,4 @@
 - Editar Tareas
 - Eliminar Tareas
 - Filtrar por tareas Completas/Incompletas
-- Integración con API (en desarrollo)
+- Guardado de datos en almacenamiento local del navegador
